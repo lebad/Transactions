@@ -20,6 +20,9 @@
 		5577FAE22B725B4000F6E106 /* PBTransactions.json in Resources */ = {isa = PBXBuildFile; fileRef = 5577FAE12B725B3F00F6E106 /* PBTransactions.json */; };
 		5577FAE52B72834900F6E106 /* PBTApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAE42B72834900F6E106 /* PBTApiProtocol.swift */; };
 		5577FAE72B72846000F6E106 /* PBTApiLocalMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAE62B72846000F6E106 /* PBTApiLocalMock.swift */; };
+		5577FAEB2B728E2C00F6E106 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAEA2B728E2C00F6E106 /* NetworkMonitor.swift */; };
+		5577FAEE2B72D12900F6E106 /* ViewDidLoadModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAED2B72D12900F6E106 /* ViewDidLoadModifier.swift */; };
+		5577FAF02B72D2DF00F6E106 /* ConnectionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAEF2B72D2DF00F6E106 /* ConnectionStatusView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,9 @@
 		5577FAE12B725B3F00F6E106 /* PBTransactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PBTransactions.json; sourceTree = "<group>"; };
 		5577FAE42B72834900F6E106 /* PBTApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBTApiProtocol.swift; sourceTree = "<group>"; };
 		5577FAE62B72846000F6E106 /* PBTApiLocalMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBTApiLocalMock.swift; sourceTree = "<group>"; };
+		5577FAEA2B728E2C00F6E106 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		5577FAED2B72D12900F6E106 /* ViewDidLoadModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDidLoadModifier.swift; sourceTree = "<group>"; };
+		5577FAEF2B72D2DF00F6E106 /* ConnectionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,10 +134,37 @@
 		5577FAE32B72833500F6E106 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5577FAEC2B72D11E00F6E106 /* UI */,
+				5577FAE92B728E1300F6E106 /* NetworkMonitor */,
+				5577FAE82B728DFF00F6E106 /* PBTApi */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5577FAE82B728DFF00F6E106 /* PBTApi */ = {
+			isa = PBXGroup;
+			children = (
 				5577FAE42B72834900F6E106 /* PBTApiProtocol.swift */,
 				5577FAE62B72846000F6E106 /* PBTApiLocalMock.swift */,
 			);
-			path = Common;
+			path = PBTApi;
+			sourceTree = "<group>";
+		};
+		5577FAE92B728E1300F6E106 /* NetworkMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				5577FAEA2B728E2C00F6E106 /* NetworkMonitor.swift */,
+			);
+			path = NetworkMonitor;
+			sourceTree = "<group>";
+		};
+		5577FAEC2B72D11E00F6E106 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5577FAED2B72D12900F6E106 /* ViewDidLoadModifier.swift */,
+				5577FAEF2B72D2DF00F6E106 /* ConnectionStatusView.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,8 +238,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5577FAEB2B728E2C00F6E106 /* NetworkMonitor.swift in Sources */,
 				5577FAE02B72409C00F6E106 /* TransactionsServiceProtocol.swift in Sources */,
 				5577FAC42B7135C300F6E106 /* ContentView.swift in Sources */,
+				5577FAEE2B72D12900F6E106 /* ViewDidLoadModifier.swift in Sources */,
 				5577FADC2B72285D00F6E106 /* TransactionItem.swift in Sources */,
 				5577FADA2B72258800F6E106 /* TransactionsViewModel.swift in Sources */,
 				5577FAC22B7135C300F6E106 /* WorldOfPAYBACKApp.swift in Sources */,
@@ -214,6 +249,7 @@
 				5577FAD72B72220C00F6E106 /* Transaction.swift in Sources */,
 				5577FAE52B72834900F6E106 /* PBTApiProtocol.swift in Sources */,
 				5577FADE2B72401700F6E106 /* TransactionsService.swift in Sources */,
+				5577FAF02B72D2DF00F6E106 /* ConnectionStatusView.swift in Sources */,
 				5577FAD32B7221C500F6E106 /* TransactionsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +392,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -385,6 +422,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

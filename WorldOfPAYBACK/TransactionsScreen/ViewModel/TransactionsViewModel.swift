@@ -19,6 +19,7 @@ class TransactionsViewModel: ObservableObject {
 	@Published var isLoading = false
 	@Published var shouldShowAlert = false
 	@Published var alertItem = AlertItem()
+	@Published var isNetworkConnected: Bool = true
 	
 	@Published var transactionItems: [TransactionItem] = []
 	
@@ -37,16 +38,28 @@ class TransactionsViewModel: ObservableObject {
 	}()
 	
 	private let transactionsService: TransactionsServiceProtocol
+	private let networkMonitor: NetworkMonitorProtocol
 	
-	init(transactionsService: TransactionsServiceProtocol) {
+	init(
+		transactionsService: TransactionsServiceProtocol,
+		networkMonitor: NetworkMonitorProtocol
+	) {
 		self.transactionsService = transactionsService
+		self.networkMonitor = networkMonitor
 	}
 	
 	func start() async {
+		setupNetworkMonitor()
 		screenTitle = "Transactions"
 		isLoading = true
 		await requestTransactions()
 		isLoading = false
+	}
+	
+	private func setupNetworkMonitor() {
+		networkMonitor.isConnected
+			.assign(to: &$isNetworkConnected)
+		networkMonitor.startMonitoring()
 	}
 	
 	private func requestTransactions() async {

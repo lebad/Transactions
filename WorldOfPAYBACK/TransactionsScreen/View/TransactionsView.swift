@@ -10,11 +10,14 @@ import SwiftUI
 struct TransactionsView: View {
 	@StateObject var viewModel: TransactionsViewModel
 	
-    var body: some View {
+	var body: some View {
 		NavigationStack {
 			if viewModel.isLoading {
 				ProgressView()
 			} else {
+				if !viewModel.isNetworkConnected {
+					ConnectionStatusView()
+				}
 				List(viewModel.transactionItems) { transactionItem in
 					NavigationLink(value: transactionItem.id) {
 						VStack(alignment: .leading, spacing: 4) {
@@ -32,7 +35,7 @@ struct TransactionsView: View {
 					}
 				}
 				.navigationTitle(viewModel.screenTitle)
-				.navigationBarTitleDisplayMode(.inline)				
+				.navigationBarTitleDisplayMode(.inline)
 			}
 		}
 		.alert(isPresented: $viewModel.shouldShowAlert) {
@@ -42,10 +45,12 @@ struct TransactionsView: View {
 				dismissButton: .default(Text(viewModel.alertItem.buttonTitle))
 			)
 		}
-		.task {
-			await viewModel.start()
+		.onViewDidLoad {
+			Task {
+				await viewModel.start()
+			}
 		}
-    }
+	}
 }
 
 // MARK: Preview
@@ -56,7 +61,7 @@ class TransactionsServicePreviewFake: TransactionsServiceProtocol {
 
 extension TransactionsViewModel {
 	static var preview: TransactionsViewModel {
-		let viewModel = TransactionsViewModel(transactionsService: TransactionsServicePreviewFake())
+		let viewModel = TransactionsViewModel(transactionsService: TransactionsServicePreviewFake(), networkMonitor: NetworkMonitor())
 		viewModel.screenTitle = "Transactions"
 		viewModel.transactionItems = [
 			TransactionItem(
