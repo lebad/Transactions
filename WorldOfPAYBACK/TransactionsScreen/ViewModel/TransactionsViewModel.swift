@@ -36,7 +36,9 @@ class TransactionsViewModel: ObservableObject {
 		screenTitle = "Transactions"
 		do {
 			let transacions = try await transactionsService.requestTransactions()
-			transactionItems = transacions.map { transaction in
+			transactionItems = transacions
+				.sorted(by: { $0.transactionDetail.bookingDate < $1.transactionDetail.bookingDate })
+				.map { transaction in
 				numberFormatter.currencyCode = transaction.transactionDetail.value.currency
 				let amountString = numberFormatter.string(for: transaction.transactionDetail.value.amount) ?? ""
 				let bookingDateString = dateScreenFormatter.string(from: transaction.transactionDetail.bookingDate)
