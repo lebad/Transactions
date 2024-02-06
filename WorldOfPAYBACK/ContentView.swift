@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-		TransactionsView(viewModel: TransactionsViewModel(transactionsService: TransactionsServiceFake()))
+		TransactionsView(viewModel: TransactionsViewModel(transactionsService: TransactionsService(pbtApi: PBTApiLocalMock())))
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  TransactionsServiceFake.swift
+//  TransactionsService.swift
 //  WorldOfPAYBACK
 //
 //  Created by Andrey Lebedev on 06.02.2024.
@@ -7,15 +7,25 @@
 
 import Foundation
 
-class TransactionsServiceFake: TransactionsServiceProtocol {
+class TransactionsService: TransactionsServiceProtocol {
 	private lazy var dateServerFormatter: DateFormatter = {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 		return dateFormatter
 	}()
 	
+	private let pbtApi: PBTApiProtocol
+	
+	init(pbtApi: PBTApiProtocol) {
+		self.pbtApi = pbtApi
+	}
+	
 	func requestTransactions() async throws -> [Transaction] {
-		guard let data = fileData(file: "PBTransactions", fileType: "json") else {
+		guard let url = URL(string: "https://api-test.payback.com/transactions") else {
+			throw TransactionsServiceError.undefined
+		}
+		let urlRequest = URLRequest(url: url)
+		guard let data = try? await pbtApi.loadRequest(urlRequest) else {
 			throw TransactionsServiceError.undefined
 		}
 		do {

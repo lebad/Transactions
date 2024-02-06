@@ -7,9 +7,19 @@
 
 import Foundation
 
+struct AlertItem {
+	var title = ""
+	var message = ""
+	var buttonTitle = ""
+}
+
 @MainActor
 class TransactionsViewModel: ObservableObject {
 	@Published var screenTitle = ""
+	@Published var isLoading = false
+	@Published var shouldShowAlert = false
+	@Published var alertItem = AlertItem()
+	
 	@Published var transactionItems: [TransactionItem] = []
 	
 	private lazy var dateScreenFormatter: DateFormatter = {
@@ -34,6 +44,12 @@ class TransactionsViewModel: ObservableObject {
 	
 	func start() async {
 		screenTitle = "Transactions"
+		isLoading = true
+		await requestTransactions()
+		isLoading = false
+	}
+	
+	private func requestTransactions() async {
 		do {
 			let transacions = try await transactionsService.requestTransactions()
 			transactionItems = transacions
@@ -51,7 +67,10 @@ class TransactionsViewModel: ObservableObject {
 				)
 			}
 		} catch  {
-			print(error)
+			alertItem.title = "Error"
+			alertItem.message = "Something went wrong. Please try again."
+			alertItem.buttonTitle = "OK"
+			shouldShowAlert = true
 		}
 	}
 }
