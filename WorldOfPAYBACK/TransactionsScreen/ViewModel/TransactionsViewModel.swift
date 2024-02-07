@@ -136,6 +136,8 @@ class TransactionsViewModel: ObservableObject {
 		guard let sumString = numberFormatter.string(for: sum) else {
 			return
 		}
-		transactionsSumTitle = "Transactions Sum: \(sumString)"
+		if sum > 0 {
+			transactionsSumTitle = "Transactions Sum: \(sumString)"
+		}
 	}
 }

@@ -31,7 +31,13 @@ struct TransactionsView: View {
 							.font(.headline)
 					}
 					List(viewModel.filteredTransactionItems) { transactionItem in
-						NavigationLink(value: transactionItem.id) {
+						NavigationLink {
+							TransactionDetailFactory()
+								.make(
+									partnerDisplayName: transactionItem.name,
+									transactionDescription: transactionItem.description
+								)
+						} label: {
 							VStack(alignment: .leading, spacing: 4) {
 								Text(transactionItem.name)
 									.font(.headline)
@@ -46,8 +52,7 @@ struct TransactionsView: View {
 							}
 						}
 					}
-					.navigationTitle(viewModel.screenTitle)
-					.navigationBarTitleDisplayMode(.inline)
+					.navigationBarTitle(viewModel.screenTitle, displayMode: .inline)
 				}
 			}
 		}

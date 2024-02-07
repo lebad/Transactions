@@ -23,6 +23,9 @@
 		5577FAEB2B728E2C00F6E106 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAEA2B728E2C00F6E106 /* NetworkMonitor.swift */; };
 		5577FAEE2B72D12900F6E106 /* ViewDidLoadModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAED2B72D12900F6E106 /* ViewDidLoadModifier.swift */; };
 		5577FAF02B72D2DF00F6E106 /* ConnectionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAEF2B72D2DF00F6E106 /* ConnectionStatusView.swift */; };
+		5577FAFA2B73E18700F6E106 /* TransactionDetailsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAF92B73E18700F6E106 /* TransactionDetailsFactory.swift */; };
+		5577FAFD2B73E1E900F6E106 /* TransactionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAFC2B73E1E900F6E106 /* TransactionDetailView.swift */; };
+		5577FB002B73E2BD00F6E106 /* TransactionDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAFF2B73E2BD00F6E106 /* TransactionDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		5577FAEA2B728E2C00F6E106 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		5577FAED2B72D12900F6E106 /* ViewDidLoadModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDidLoadModifier.swift; sourceTree = "<group>"; };
 		5577FAEF2B72D2DF00F6E106 /* ConnectionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusView.swift; sourceTree = "<group>"; };
+		5577FAF92B73E18700F6E106 /* TransactionDetailsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsFactory.swift; sourceTree = "<group>"; };
+		5577FAFC2B73E1E900F6E106 /* TransactionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailView.swift; sourceTree = "<group>"; };
+		5577FAFF2B73E2BD00F6E106 /* TransactionDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,7 @@
 			children = (
 				5577FAE32B72833500F6E106 /* Common */,
 				5577FACF2B72203F00F6E106 /* TransactionsScreen */,
+				5577FAF72B73E15D00F6E106 /* TransactionDetail */,
 				5577FAC12B7135C300F6E106 /* WorldOfPAYBACKApp.swift */,
 				5577FAC32B7135C300F6E106 /* ContentView.swift */,
 				5577FAE12B725B3F00F6E106 /* PBTransactions.json */,
@@ -167,6 +174,40 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		5577FAF72B73E15D00F6E106 /* TransactionDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5577FAF82B73E17000F6E106 /* Factory */,
+				5577FAFE2B73E27100F6E106 /* ViewModel */,
+				5577FAFB2B73E1C200F6E106 /* View */,
+			);
+			path = TransactionDetail;
+			sourceTree = "<group>";
+		};
+		5577FAF82B73E17000F6E106 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				5577FAF92B73E18700F6E106 /* TransactionDetailsFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		5577FAFB2B73E1C200F6E106 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5577FAFC2B73E1E900F6E106 /* TransactionDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5577FAFE2B73E27100F6E106 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5577FAFF2B73E2BD00F6E106 /* TransactionDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,9 +279,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5577FB002B73E2BD00F6E106 /* TransactionDetailViewModel.swift in Sources */,
 				5577FAEB2B728E2C00F6E106 /* NetworkMonitor.swift in Sources */,
 				5577FAE02B72409C00F6E106 /* TransactionsServiceProtocol.swift in Sources */,
 				5577FAC42B7135C300F6E106 /* ContentView.swift in Sources */,
+				5577FAFD2B73E1E900F6E106 /* TransactionDetailView.swift in Sources */,
 				5577FAEE2B72D12900F6E106 /* ViewDidLoadModifier.swift in Sources */,
 				5577FADC2B72285D00F6E106 /* TransactionItem.swift in Sources */,
 				5577FADA2B72258800F6E106 /* TransactionsViewModel.swift in Sources */,
@@ -248,6 +291,7 @@
 				5577FAE72B72846000F6E106 /* PBTApiLocalMock.swift in Sources */,
 				5577FAD72B72220C00F6E106 /* Transaction.swift in Sources */,
 				5577FAE52B72834900F6E106 /* PBTApiProtocol.swift in Sources */,
+				5577FAFA2B73E18700F6E106 /* TransactionDetailsFactory.swift in Sources */,
 				5577FADE2B72401700F6E106 /* TransactionsService.swift in Sources */,
 				5577FAF02B72D2DF00F6E106 /* ConnectionStatusView.swift in Sources */,
 				5577FAD32B7221C500F6E106 /* TransactionsView.swift in Sources */,
