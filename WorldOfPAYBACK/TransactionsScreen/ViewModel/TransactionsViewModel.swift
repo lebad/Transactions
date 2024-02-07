@@ -27,9 +27,12 @@ class TransactionsViewModel: ObservableObject {
 	@Published var alertItem = AlertItem()
 	@Published var isNetworkConnected: Bool = true
 	@Published var transactionItems: [TransactionItem] = []
-	@Published var filteredTransactions: [TransactionItem] = []
+	@Published var filteredTransactionItems: [TransactionItem] = []
 	@Published var categories: [CategoryItem] = []
 	@Published var selectedCategory = 0
+	@Published var transactionsSumTitle: String?
+	
+	private var transactions: [Transaction] = []
 	private var cancellables = Set<AnyCancellable>()
 	
 	private lazy var dateScreenFormatter: DateFormatter = {
@@ -76,22 +79,23 @@ class TransactionsViewModel: ObservableObject {
 		$selectedCategory
 			.sink { [weak self] category in
 				self?.filterTransactions(by: category)
+				self?.setupTransactionsSum()
 			}
 			.store(in: &cancellables)
 	}
 	
 	private func filterTransactions(by category: Int) {
 		if category != 0 {
-			filteredTransactions = transactionItems.filter { $0.category == category }
+			filteredTransactionItems = transactionItems.filter { $0.category == category }
 		} else {
-			filteredTransactions = transactionItems
+			filteredTransactionItems = transactionItems
 		}
 	}
 	
 	private func requestTransactions() async {
 		do {
-			let transacions = try await transactionsService.requestTransactions()
-			transactionItems = transacions
+			transactions = try await transactionsService.requestTransactions()
+			transactionItems = transactions
 				.sorted(by: { $0.transactionDetail.bookingDate < $1.transactionDetail.bookingDate })
 				.map { transaction in
 				numberFormatter.currencyCode = transaction.transactionDetail.value.currency
@@ -106,8 +110,9 @@ class TransactionsViewModel: ObservableObject {
 					category: transaction.category
 				)
 			}
-			filteredTransactions = transactionItems
-			setupCategories(from: transacions)
+			filteredTransactionItems = transactionItems
+			setupCategories(from: transactions)
+			setupTransactionsSum()
 		} catch  {
 			alertItem.title = "Error"
 			alertItem.message = "Something went wrong. Please try again."
@@ -122,5 +127,15 @@ class TransactionsViewModel: ObservableObject {
 			.sorted()
 			.map { CategoryItem(id: $0, name: "Category \($0)") }
 		categories = [CategoryItem(id: 0, name: "All")] + serverCategories
+	}
+	
+	private func setupTransactionsSum() {
+		let sum = transactions
+			.filter { transaction in filteredTransactionItems.contains(where: { $0.id == transaction.id }) }
+			.reduce(0, { $0 + $1.transactionDetail.value.amount })
+		guard let sumString = numberFormatter.string(for: sum) else {
+			return
+		}
+		transactionsSumTitle = "Transactions Sum: \(sumString)"
 	}
 }

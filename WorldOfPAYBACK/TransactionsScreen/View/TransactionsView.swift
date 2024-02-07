@@ -26,7 +26,11 @@ struct TransactionsView: View {
 					}
 					.pickerStyle(SegmentedPickerStyle())
 					.padding()
-					List(viewModel.filteredTransactions) { transactionItem in
+					if let transactionsSumTitle = viewModel.transactionsSumTitle {
+						Text(transactionsSumTitle)
+							.font(.headline)
+					}
+					List(viewModel.filteredTransactionItems) { transactionItem in
 						NavigationLink(value: transactionItem.id) {
 							VStack(alignment: .leading, spacing: 4) {
 								Text(transactionItem.name)
