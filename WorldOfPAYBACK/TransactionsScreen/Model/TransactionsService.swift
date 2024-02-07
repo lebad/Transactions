@@ -48,7 +48,8 @@ class TransactionsService: TransactionsServiceProtocol {
 				return Transaction(
 					id: UUID(),
 					partnerDisplayName: transaction.partnerDisplayName,
-					transactionDetail: detail
+					transactionDetail: detail,
+					category: transaction.category
 				)
 			}
 		} catch {
@@ -82,6 +83,7 @@ private struct TransactionItemsServerData: Decodable {
 		
 		let partnerDisplayName: String
 		let transactionDetail: TransactionDetail
+		let category: Int
 	}
 	
 	let items: [Transaction]

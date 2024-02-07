@@ -6,11 +6,17 @@
 //
 
 import Foundation
+import Combine
 
 struct AlertItem {
 	var title = ""
 	var message = ""
 	var buttonTitle = ""
+}
+
+struct CategoryItem: Identifiable {
+	let id: Int
+	let name: String
 }
 
 @MainActor
@@ -20,8 +26,11 @@ class TransactionsViewModel: ObservableObject {
 	@Published var shouldShowAlert = false
 	@Published var alertItem = AlertItem()
 	@Published var isNetworkConnected: Bool = true
-	
 	@Published var transactionItems: [TransactionItem] = []
+	@Published var filteredTransactions: [TransactionItem] = []
+	@Published var categories: [CategoryItem] = []
+	@Published var selectedCategory = 0
+	private var cancellables = Set<AnyCancellable>()
 	
 	private lazy var dateScreenFormatter: DateFormatter = {
 		let dateFormatter = DateFormatter()
@@ -50,6 +59,7 @@ class TransactionsViewModel: ObservableObject {
 	
 	func start() async {
 		setupNetworkMonitor()
+		setupSelectedCategory()
 		screenTitle = "Transactions"
 		isLoading = true
 		await requestTransactions()
@@ -60,6 +70,22 @@ class TransactionsViewModel: ObservableObject {
 		networkMonitor.isConnected
 			.assign(to: &$isNetworkConnected)
 		networkMonitor.startMonitoring()
+	}
+	
+	private func setupSelectedCategory() {
+		$selectedCategory
+			.sink { [weak self] category in
+				self?.filterTransactions(by: category)
+			}
+			.store(in: &cancellables)
+	}
+	
+	private func filterTransactions(by category: Int) {
+		if category != 0 {
+			filteredTransactions = transactionItems.filter { $0.category == category }
+		} else {
+			filteredTransactions = transactionItems
+		}
 	}
 	
 	private func requestTransactions() async {
@@ -76,14 +102,25 @@ class TransactionsViewModel: ObservableObject {
 					name: transaction.partnerDisplayName,
 					description: transaction.transactionDetail.description,
 					bookingDateString: "BookingDate: \(bookingDateString)",
-					amountString: "Amount: \(amountString)"
+					amountString: "Amount: \(amountString)", 
+					category: transaction.category
 				)
 			}
+			filteredTransactions = transactionItems
+			setupCategories(from: transacions)
 		} catch  {
 			alertItem.title = "Error"
 			alertItem.message = "Something went wrong. Please try again."
 			alertItem.buttonTitle = "OK"
 			shouldShowAlert = true
 		}
+	}
+	
+	private func setupCategories(from transacions: [Transaction]) {
+		let categoryInts = Array(Set(transacions.map { $0.category }))
+		let serverCategories = categoryInts
+			.sorted()
+			.map { CategoryItem(id: $0, name: "Category \($0)") }
+		categories = [CategoryItem(id: 0, name: "All")] + serverCategories
 	}
 }

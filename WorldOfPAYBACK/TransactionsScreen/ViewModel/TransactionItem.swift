@@ -14,4 +14,5 @@ struct TransactionItem: Identifiable {
 	let description: String?
 	let bookingDateString: String
 	let amountString: String
+	let category: Int
 }

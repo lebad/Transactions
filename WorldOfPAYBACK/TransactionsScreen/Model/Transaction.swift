@@ -11,6 +11,7 @@ struct Transaction {
 	let id: UUID
 	let partnerDisplayName: String
 	let transactionDetail: TransactionDetail
+	let category: Int
 	
 	struct TransactionDetail {
 		struct Value {

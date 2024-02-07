@@ -12,30 +12,39 @@ struct TransactionsView: View {
 	
 	var body: some View {
 		NavigationStack {
-			if viewModel.isLoading {
-				ProgressView()
-			} else {
-				if !viewModel.isNetworkConnected {
-					ConnectionStatusView()
-				}
-				List(viewModel.transactionItems) { transactionItem in
-					NavigationLink(value: transactionItem.id) {
-						VStack(alignment: .leading, spacing: 4) {
-							Text(transactionItem.name)
-								.font(.headline)
-							transactionItem.description.map {
-								Text($0)
-									.font(.subheadline)
-							}
-							Text(transactionItem.bookingDateString)
-								.font(.body)
-							Text(transactionItem.amountString)
-								.font(.body)
+			VStack {
+				if viewModel.isLoading {
+					ProgressView()
+				} else {
+					if !viewModel.isNetworkConnected {
+						ConnectionStatusView()
+					}
+					Picker("Select Category", selection: $viewModel.selectedCategory) {
+						ForEach(viewModel.categories) { category in
+							Text(category.name).tag(category.id as Int?)
 						}
 					}
+					.pickerStyle(SegmentedPickerStyle())
+					.padding()
+					List(viewModel.filteredTransactions) { transactionItem in
+						NavigationLink(value: transactionItem.id) {
+							VStack(alignment: .leading, spacing: 4) {
+								Text(transactionItem.name)
+									.font(.headline)
+								transactionItem.description.map {
+									Text($0)
+										.font(.subheadline)
+								}
+								Text(transactionItem.bookingDateString)
+									.font(.body)
+								Text(transactionItem.amountString)
+									.font(.body)
+							}
+						}
+					}
+					.navigationTitle(viewModel.screenTitle)
+					.navigationBarTitleDisplayMode(.inline)
 				}
-				.navigationTitle(viewModel.screenTitle)
-				.navigationBarTitleDisplayMode(.inline)
 			}
 		}
 		.alert(isPresented: $viewModel.shouldShowAlert) {
@@ -69,14 +78,16 @@ extension TransactionsViewModel {
 				name: "REWE Group",
 				description: "Punkte sammeln",
 				bookingDateString: "Booking date: 01.02.14",
-				amountString: "Amount: 124 PBP"
+				amountString: "Amount: 124 PBP", 
+				category: 1
 			),
 			TransactionItem(
 				id: UUID(),
 				name: "OTTO Group",
 				description: "Punkte sammeln",
 				bookingDateString: "Booking date: 01.02.14",
-				amountString: "Amount: 32 PBP"
+				amountString: "Amount: 32 PBP", 
+				category: 2
 			)
 		]
 		return viewModel
