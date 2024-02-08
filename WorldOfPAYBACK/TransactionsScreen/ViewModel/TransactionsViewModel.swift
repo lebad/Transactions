@@ -41,24 +41,29 @@ class TransactionsViewModel: ObservableObject {
 		dateFormatter.dateFormat = "MM/dd/yy, h:mm a"
 		dateFormatter.amSymbol = "AM"
 		dateFormatter.pmSymbol = "PM"
+		dateFormatter.locale = Locale(identifier: localeId)
 		return dateFormatter
 	}()
 	
 	private lazy var numberFormatter: NumberFormatter = {
 		let formatter = NumberFormatter()
 		formatter.numberStyle = .currency
+		formatter.locale = Locale(identifier: localeId)
 		return formatter
 	}()
 	
 	private let transactionsService: TransactionsServiceProtocol
 	private let networkMonitor: NetworkMonitorProtocol
+	private let localeId: String
 	
 	init(
 		transactionsService: TransactionsServiceProtocol,
-		networkMonitor: NetworkMonitorProtocol
+		networkMonitor: NetworkMonitorProtocol,
+		localeId: String
 	) {
 		self.transactionsService = transactionsService
 		self.networkMonitor = networkMonitor
+		self.localeId = localeId
 	}
 	
 	func start() async {
