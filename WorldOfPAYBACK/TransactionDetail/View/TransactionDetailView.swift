@@ -26,7 +26,7 @@ struct TransactionDetailView: View {
 			Spacer()
 		}
 		.padding()
-		.navigationBarTitle("Transaction Details", displayMode: .inline)
+		.navigationBarTitle(viewModel.screenTitle, displayMode: .inline)
 		.onAppear {
 			viewModel.start()
 		}

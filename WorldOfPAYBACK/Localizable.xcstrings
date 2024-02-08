@@ -1,0 +1,48 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "All" : {
+
+    },
+    "Amount" : {
+
+    },
+    "BookingDate" : {
+
+    },
+    "Category" : {
+
+    },
+    "Description" : {
+
+    },
+    "Error" : {
+
+    },
+    "Offline" : {
+
+    },
+    "OK" : {
+
+    },
+    "Partner" : {
+
+    },
+    "Select Category" : {
+
+    },
+    "Something went wrong. Please try again." : {
+
+    },
+    "Transaction Details" : {
+
+    },
+    "Transactions" : {
+
+    },
+    "Transactions Sum" : {
+
+    }
+  },
+  "version" : "1.0"
+}

@@ -21,10 +21,10 @@ class TransactionDetailViewModel: ObservableObject {
 	}
 	
 	func start() {
-		screenTitle = "Transaction Details"
-		partnerText = "Partner: \(partnerDisplayName)"
+		screenTitle = String(localized: "Transaction Details")
+		partnerText = "\(String(localized: "Partner")): \(partnerDisplayName)"
 		if let transactionDescription {
-			descriptionText = "Description: \(transactionDescription)"
+			descriptionText = "\(String(localized: "Description")): \(transactionDescription)"
 		}
 	}
 }

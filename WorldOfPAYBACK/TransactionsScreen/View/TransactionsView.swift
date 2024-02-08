@@ -19,7 +19,7 @@ struct TransactionsView: View {
 					if !viewModel.isNetworkConnected {
 						ConnectionStatusView()
 					}
-					Picker("Select Category", selection: $viewModel.selectedCategory) {
+					Picker(viewModel.categoryTitle, selection: $viewModel.selectedCategory) {
 						ForEach(viewModel.categories) { category in
 							Text(category.name).tag(category.id as Int?)
 						}

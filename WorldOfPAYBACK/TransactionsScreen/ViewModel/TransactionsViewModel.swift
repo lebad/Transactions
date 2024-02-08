@@ -22,6 +22,7 @@ struct CategoryItem: Identifiable {
 @MainActor
 class TransactionsViewModel: ObservableObject {
 	@Published var screenTitle = ""
+	@Published var categoryTitle = ""
 	@Published var isLoading = false
 	@Published var shouldShowAlert = false
 	@Published var alertItem = AlertItem()
@@ -63,7 +64,8 @@ class TransactionsViewModel: ObservableObject {
 	func start() async {
 		setupNetworkMonitor()
 		setupSelectedCategory()
-		screenTitle = "Transactions"
+		screenTitle = String(localized: "Transactions")
+		categoryTitle = String(localized: "Select Category")
 		isLoading = true
 		await requestTransactions()
 		isLoading = false
@@ -105,8 +107,8 @@ class TransactionsViewModel: ObservableObject {
 					id: transaction.id,
 					name: transaction.partnerDisplayName,
 					description: transaction.transactionDetail.description,
-					bookingDateString: "BookingDate: \(bookingDateString)",
-					amountString: "Amount: \(amountString)", 
+					bookingDateString: "\(String(localized: "BookingDate")): \(bookingDateString)",
+					amountString: "\(String(localized: "Amount")): \(amountString)",
 					category: transaction.category
 				)
 			}
@@ -114,9 +116,9 @@ class TransactionsViewModel: ObservableObject {
 			setupCategories(from: transactions)
 			setupTransactionsSum()
 		} catch  {
-			alertItem.title = "Error"
-			alertItem.message = "Something went wrong. Please try again."
-			alertItem.buttonTitle = "OK"
+			alertItem.title = String(localized: "Error")
+			alertItem.message = String(localized: "Something went wrong. Please try again.")
+			alertItem.buttonTitle = String(localized: "OK")
 			shouldShowAlert = true
 		}
 	}
@@ -125,8 +127,8 @@ class TransactionsViewModel: ObservableObject {
 		let categoryInts = Array(Set(transacions.map { $0.category }))
 		let serverCategories = categoryInts
 			.sorted()
-			.map { CategoryItem(id: $0, name: "Category \($0)") }
-		categories = [CategoryItem(id: 0, name: "All")] + serverCategories
+			.map { CategoryItem(id: $0, name: "\(String(localized: "Category")) \($0)") }
+		categories = [CategoryItem(id: 0, name: String(localized: "All"))] + serverCategories
 	}
 	
 	private func setupTransactionsSum() {
@@ -137,7 +139,7 @@ class TransactionsViewModel: ObservableObject {
 			return
 		}
 		if sum > 0 {
-			transactionsSumTitle = "Transactions Sum: \(sumString)"
+			transactionsSumTitle = "\(String(localized: "Transactions Sum")): \(sumString)"
 		}
 	}
 }
