@@ -30,6 +30,7 @@
 		5577FB062B74C3E200F6E106 /* TransactionsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB052B74C3E200F6E106 /* TransactionsFactory.swift */; };
 		5577FB082B74FC8C00F6E106 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5577FB072B74FC8C00F6E106 /* Localizable.xcstrings */; };
 		5577FB102B74FDCB00F6E106 /* WorldOfPAYBACKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB0F2B74FDCB00F6E106 /* WorldOfPAYBACKTests.swift */; };
+		5577FB182B75047B00F6E106 /* TransactionsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB172B75047B00F6E106 /* TransactionsStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		5577FB072B74FC8C00F6E106 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		5577FB0D2B74FDCB00F6E106 /* WorldOfPAYBACKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorldOfPAYBACKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5577FB0F2B74FDCB00F6E106 /* WorldOfPAYBACKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldOfPAYBACKTests.swift; sourceTree = "<group>"; };
+		5577FB172B75047B00F6E106 /* TransactionsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 		5577FAE32B72833500F6E106 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5577FB162B75046300F6E106 /* TransactionsStorage */,
 				5577FB012B74C06C00F6E106 /* Network */,
 				5577FAEC2B72D11E00F6E106 /* UI */,
 				5577FAE82B728DFF00F6E106 /* PBTApi */,
@@ -253,6 +256,14 @@
 				5577FB0F2B74FDCB00F6E106 /* WorldOfPAYBACKTests.swift */,
 			);
 			path = WorldOfPAYBACKTests;
+			sourceTree = "<group>";
+		};
+		5577FB162B75046300F6E106 /* TransactionsStorage */ = {
+			isa = PBXGroup;
+			children = (
+				5577FB172B75047B00F6E106 /* TransactionsStorage.swift */,
+			);
+			path = TransactionsStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,6 +386,7 @@
 				5577FADE2B72401700F6E106 /* TransactionsService.swift in Sources */,
 				5577FAF02B72D2DF00F6E106 /* ConnectionStatusView.swift in Sources */,
 				5577FAD32B7221C500F6E106 /* TransactionsView.swift in Sources */,
+				5577FB182B75047B00F6E106 /* TransactionsStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

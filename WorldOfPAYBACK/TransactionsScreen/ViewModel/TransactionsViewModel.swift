@@ -54,15 +54,18 @@ class TransactionsViewModel: ObservableObject {
 	
 	private let transactionsService: TransactionsServiceProtocol
 	private let networkMonitor: NetworkMonitorProtocol
+	private let transactionsStorage: TransactionsStorageProtocol
 	private let localeId: String
 	
 	init(
 		transactionsService: TransactionsServiceProtocol,
 		networkMonitor: NetworkMonitorProtocol,
+		transactionsStorage: TransactionsStorageProtocol,
 		localeId: String
 	) {
 		self.transactionsService = transactionsService
 		self.networkMonitor = networkMonitor
+		self.transactionsStorage = transactionsStorage
 		self.localeId = localeId
 	}
 	
@@ -102,6 +105,7 @@ class TransactionsViewModel: ObservableObject {
 	private func requestTransactions() async {
 		do {
 			transactions = try await transactionsService.requestTransactions()
+			transactionsStorage.transactions = transactions
 			transactionItems = transactions
 				.sorted(by: { $0.transactionDetail.bookingDate < $1.transactionDetail.bookingDate })
 				.map { transaction in
