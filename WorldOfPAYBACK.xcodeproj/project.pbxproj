@@ -26,6 +26,8 @@
 		5577FAFA2B73E18700F6E106 /* TransactionDetailsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAF92B73E18700F6E106 /* TransactionDetailsFactory.swift */; };
 		5577FAFD2B73E1E900F6E106 /* TransactionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAFC2B73E1E900F6E106 /* TransactionDetailView.swift */; };
 		5577FB002B73E2BD00F6E106 /* TransactionDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FAFF2B73E2BD00F6E106 /* TransactionDetailViewModel.swift */; };
+		5577FB032B74C09800F6E106 /* HostResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB022B74C09800F6E106 /* HostResolver.swift */; };
+		5577FB062B74C3E200F6E106 /* TransactionsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB052B74C3E200F6E106 /* TransactionsFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		5577FAF92B73E18700F6E106 /* TransactionDetailsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsFactory.swift; sourceTree = "<group>"; };
 		5577FAFC2B73E1E900F6E106 /* TransactionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailView.swift; sourceTree = "<group>"; };
 		5577FAFF2B73E2BD00F6E106 /* TransactionDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailViewModel.swift; sourceTree = "<group>"; };
+		5577FB022B74C09800F6E106 /* HostResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostResolver.swift; sourceTree = "<group>"; };
+		5577FB052B74C3E200F6E106 /* TransactionsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 		5577FACF2B72203F00F6E106 /* TransactionsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				5577FB042B74C3C800F6E106 /* Factory */,
 				5577FAD42B7221EA00F6E106 /* View */,
 				5577FAD82B72256600F6E106 /* ViewModel */,
 				5577FAD52B7221F700F6E106 /* Model */,
@@ -141,8 +146,8 @@
 		5577FAE32B72833500F6E106 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5577FB012B74C06C00F6E106 /* Network */,
 				5577FAEC2B72D11E00F6E106 /* UI */,
-				5577FAE92B728E1300F6E106 /* NetworkMonitor */,
 				5577FAE82B728DFF00F6E106 /* PBTApi */,
 			);
 			path = Common;
@@ -155,14 +160,6 @@
 				5577FAE62B72846000F6E106 /* PBTApiLocalMock.swift */,
 			);
 			path = PBTApi;
-			sourceTree = "<group>";
-		};
-		5577FAE92B728E1300F6E106 /* NetworkMonitor */ = {
-			isa = PBXGroup;
-			children = (
-				5577FAEA2B728E2C00F6E106 /* NetworkMonitor.swift */,
-			);
-			path = NetworkMonitor;
 			sourceTree = "<group>";
 		};
 		5577FAEC2B72D11E00F6E106 /* UI */ = {
@@ -206,6 +203,23 @@
 				5577FAFF2B73E2BD00F6E106 /* TransactionDetailViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5577FB012B74C06C00F6E106 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5577FAEA2B728E2C00F6E106 /* NetworkMonitor.swift */,
+				5577FB022B74C09800F6E106 /* HostResolver.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		5577FB042B74C3C800F6E106 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				5577FB052B74C3E200F6E106 /* TransactionsFactory.swift */,
+			);
+			path = Factory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +300,9 @@
 				5577FAFD2B73E1E900F6E106 /* TransactionDetailView.swift in Sources */,
 				5577FAEE2B72D12900F6E106 /* ViewDidLoadModifier.swift in Sources */,
 				5577FADC2B72285D00F6E106 /* TransactionItem.swift in Sources */,
+				5577FB032B74C09800F6E106 /* HostResolver.swift in Sources */,
 				5577FADA2B72258800F6E106 /* TransactionsViewModel.swift in Sources */,
+				5577FB062B74C3E200F6E106 /* TransactionsFactory.swift in Sources */,
 				5577FAC22B7135C300F6E106 /* WorldOfPAYBACKApp.swift in Sources */,
 				5577FAE72B72846000F6E106 /* PBTApiLocalMock.swift in Sources */,
 				5577FAD72B72220C00F6E106 /* Transaction.swift in Sources */,
@@ -444,6 +460,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.anlebedev.WorldOfPAYBACK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited) TEST";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -474,6 +491,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.anlebedev.WorldOfPAYBACK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PRODUCTION;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

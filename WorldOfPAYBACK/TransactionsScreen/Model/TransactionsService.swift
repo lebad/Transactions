@@ -15,13 +15,19 @@ class TransactionsService: TransactionsServiceProtocol {
 	}()
 	
 	private let pbtApi: PBTApiProtocol
+	private let hostResolver: HostResolverProtocol
 	
-	init(pbtApi: PBTApiProtocol) {
+	init(
+		pbtApi: PBTApiProtocol,
+		hostResolver: HostResolverProtocol
+	) {
 		self.pbtApi = pbtApi
+		self.hostResolver = hostResolver
 	}
 	
 	func requestTransactions() async throws -> [Transaction] {
-		guard let url = URL(string: "https://api-test.payback.com/transactions") else {
+		let host = hostResolver.currentHost
+		guard let url = URL(string: "https://\(host)/transactions") else {
 			throw TransactionsServiceError.undefined
 		}
 		let urlRequest = URLRequest(url: url)
