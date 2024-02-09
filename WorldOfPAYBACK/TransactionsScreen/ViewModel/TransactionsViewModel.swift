@@ -8,13 +8,13 @@
 import Foundation
 import Combine
 
-struct AlertItem {
+struct AlertItem: Equatable {
 	var title = ""
 	var message = ""
 	var buttonTitle = ""
 }
 
-struct CategoryItem: Identifiable {
+struct CategoryItem: Identifiable, Equatable {
 	let id: Int
 	let name: String
 }
@@ -54,7 +54,7 @@ class TransactionsViewModel: ObservableObject {
 	
 	private let transactionsService: TransactionsServiceProtocol
 	private let networkMonitor: NetworkMonitorProtocol
-	private let transactionsStorage: TransactionsStorageProtocol
+	private var transactionsStorage: TransactionsStorageProtocol
 	private let localeId: String
 	
 	init(

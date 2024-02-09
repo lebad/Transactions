@@ -8,7 +8,7 @@
 import Foundation
 
 // Data to display
-struct TransactionItem: Identifiable {
+struct TransactionItem: Identifiable, Equatable {
 	let id: UUID
 	let name: String
 	let description: String?

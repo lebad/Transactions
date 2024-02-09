@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Transaction {
+struct Transaction: Equatable {
 	let id: UUID
 	let partnerDisplayName: String
 	let transactionDetail: TransactionDetail
 	let category: Int
 	
-	struct TransactionDetail {
-		struct Value {
+	struct TransactionDetail: Equatable {
+		struct Value: Equatable {
 			let amount: Decimal
 			let currency: String
 		}

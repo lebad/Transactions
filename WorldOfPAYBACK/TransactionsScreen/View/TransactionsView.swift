@@ -71,38 +71,38 @@ struct TransactionsView: View {
 	}
 }
 
-// MARK: Preview
-
-class TransactionsServicePreviewFake: TransactionsServiceProtocol {
-	func requestTransactions() async throws -> [Transaction] { [] }
-}
-
-extension TransactionsViewModel {
-	static var preview: TransactionsViewModel {
-		let viewModel = TransactionsViewModel(transactionsService: TransactionsServicePreviewFake(), networkMonitor: NetworkMonitor())
-		viewModel.screenTitle = "Transactions"
-		viewModel.transactionItems = [
-			TransactionItem(
-				id: UUID(),
-				name: "REWE Group",
-				description: "Punkte sammeln",
-				bookingDateString: "Booking date: 01.02.14",
-				amountString: "Amount: 124 PBP", 
-				category: 1
-			),
-			TransactionItem(
-				id: UUID(),
-				name: "OTTO Group",
-				description: "Punkte sammeln",
-				bookingDateString: "Booking date: 01.02.14",
-				amountString: "Amount: 32 PBP", 
-				category: 2
-			)
-		]
-		return viewModel
-	}
-}
+//// MARK: Preview
+//
+//class TransactionsServicePreviewFake: TransactionsServiceProtocol {
+//	func requestTransactions() async throws -> [Transaction] { [] }
+//}
+//
+//extension TransactionsViewModel {
+//	static var preview: TransactionsViewModel {
+//		let viewModel = TransactionsViewModel(transactionsService: TransactionsServicePreviewFake(), networkMonitor: NetworkMonitor())
+//		viewModel.screenTitle = "Transactions"
+//		viewModel.transactionItems = [
+//			TransactionItem(
+//				id: UUID(),
+//				name: "REWE Group",
+//				description: "Punkte sammeln",
+//				bookingDateString: "Booking date: 01.02.14",
+//				amountString: "Amount: 124 PBP", 
+//				category: 1
+//			),
+//			TransactionItem(
+//				id: UUID(),
+//				name: "OTTO Group",
+//				description: "Punkte sammeln",
+//				bookingDateString: "Booking date: 01.02.14",
+//				amountString: "Amount: 32 PBP", 
+//				category: 2
+//			)
+//		]
+//		return viewModel
+//	}
+//}
 
 #Preview {
-	TransactionsView(viewModel: TransactionsViewModel.preview)
+	TransactionsFactory().make()
 }

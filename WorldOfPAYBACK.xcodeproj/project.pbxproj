@@ -29,8 +29,11 @@
 		5577FB032B74C09800F6E106 /* HostResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB022B74C09800F6E106 /* HostResolver.swift */; };
 		5577FB062B74C3E200F6E106 /* TransactionsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB052B74C3E200F6E106 /* TransactionsFactory.swift */; };
 		5577FB082B74FC8C00F6E106 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5577FB072B74FC8C00F6E106 /* Localizable.xcstrings */; };
-		5577FB102B74FDCB00F6E106 /* WorldOfPAYBACKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB0F2B74FDCB00F6E106 /* WorldOfPAYBACKTests.swift */; };
 		5577FB182B75047B00F6E106 /* TransactionsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB172B75047B00F6E106 /* TransactionsStorage.swift */; };
+		5577FB1A2B75081800F6E106 /* TransactionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB192B75081800F6E106 /* TransactionsViewModelTests.swift */; };
+		5577FB1D2B750DE800F6E106 /* TransactionsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB1C2B750DE800F6E106 /* TransactionsServiceMock.swift */; };
+		5577FB1F2B7516D000F6E106 /* NetworkMonitorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB1E2B7516D000F6E106 /* NetworkMonitorMock.swift */; };
+		5577FB212B75190200F6E106 /* TransactionsStorageFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5577FB202B75190200F6E106 /* TransactionsStorageFake.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +71,11 @@
 		5577FB052B74C3E200F6E106 /* TransactionsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsFactory.swift; sourceTree = "<group>"; };
 		5577FB072B74FC8C00F6E106 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		5577FB0D2B74FDCB00F6E106 /* WorldOfPAYBACKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorldOfPAYBACKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5577FB0F2B74FDCB00F6E106 /* WorldOfPAYBACKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldOfPAYBACKTests.swift; sourceTree = "<group>"; };
 		5577FB172B75047B00F6E106 /* TransactionsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsStorage.swift; sourceTree = "<group>"; };
+		5577FB192B75081800F6E106 /* TransactionsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModelTests.swift; sourceTree = "<group>"; };
+		5577FB1C2B750DE800F6E106 /* TransactionsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsServiceMock.swift; sourceTree = "<group>"; };
+		5577FB1E2B7516D000F6E106 /* NetworkMonitorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorMock.swift; sourceTree = "<group>"; };
+		5577FB202B75190200F6E106 /* TransactionsStorageFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsStorageFake.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,7 +259,8 @@
 		5577FB0E2B74FDCB00F6E106 /* WorldOfPAYBACKTests */ = {
 			isa = PBXGroup;
 			children = (
-				5577FB0F2B74FDCB00F6E106 /* WorldOfPAYBACKTests.swift */,
+				5577FB192B75081800F6E106 /* TransactionsViewModelTests.swift */,
+				5577FB1B2B750DB700F6E106 /* Mocks */,
 			);
 			path = WorldOfPAYBACKTests;
 			sourceTree = "<group>";
@@ -264,6 +271,16 @@
 				5577FB172B75047B00F6E106 /* TransactionsStorage.swift */,
 			);
 			path = TransactionsStorage;
+			sourceTree = "<group>";
+		};
+		5577FB1B2B750DB700F6E106 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				5577FB1C2B750DE800F6E106 /* TransactionsServiceMock.swift */,
+				5577FB1E2B7516D000F6E106 /* NetworkMonitorMock.swift */,
+				5577FB202B75190200F6E106 /* TransactionsStorageFake.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,7 +411,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5577FB102B74FDCB00F6E106 /* WorldOfPAYBACKTests.swift in Sources */,
+				5577FB212B75190200F6E106 /* TransactionsStorageFake.swift in Sources */,
+				5577FB1D2B750DE800F6E106 /* TransactionsServiceMock.swift in Sources */,
+				5577FB1F2B7516D000F6E106 /* NetworkMonitorMock.swift in Sources */,
+				5577FB1A2B75081800F6E106 /* TransactionsViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

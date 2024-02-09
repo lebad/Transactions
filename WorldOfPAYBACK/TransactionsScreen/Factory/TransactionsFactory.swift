@@ -18,7 +18,7 @@ class TransactionsFactory {
 		let viewModel = TransactionsViewModel(
 			transactionsService: service,
 			networkMonitor: NetworkMonitor(), 
-			transactionsStorage: TransactionsStorage.shared, 
+			transactionsStorage: TransactionsStorage.shared,
 			localeId: Locale.current.identifier
 		)
 		return TransactionsView(viewModel: viewModel)
